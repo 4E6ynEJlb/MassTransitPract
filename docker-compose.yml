@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  masstransitpract:
+    image: ${DOCKER_REGISTRY-}masstransitpract
+    build:
+      context: .
+      dockerfile: MassTransitPract/Dockerfile
+    depends_on: 
+      - rabbitmq
+  rabbitmq:
+    image: masstransit/rabbitmq:latest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
